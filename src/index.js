@@ -10,7 +10,15 @@ import movies from './reducers';
 const store=createStore(movies);
 //createstore will call our movies reducer which will tell the store its initial or new state and then store will merge the new state provided by reducers.
 console.log('store',store)
-console.log('STATE',store.getState())
+console.log('STATE before sending action',store.getState())
+
+
+//dispatch method is used to send actions.It takes action object as the argument.
+store.dispatch({
+  type: 'ADD_MOVIES',
+  movies: [{name: 'Superman'}]
+});
+console.log('STATE after sending action',store.getState())
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
