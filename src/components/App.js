@@ -22,11 +22,11 @@ class  App extends React.Component{
 
     store.dispatch(addMovies(data));
     console.log('state',this.props.store.getState() )
-  }
+  } 
   render(){
-    console.log('render');
-    const movies = this.props.store.getState();
-
+    
+    const {list} = this.props.store.getState(); //{list: [],favoirites:[]}
+    console.log('render',this.props.store.getState());
   return (
     <div className="App">
      <Navbar/>  
@@ -36,7 +36,7 @@ class  App extends React.Component{
         <div className="tab">Favourites</div>
       </div>
       <div className="list">
-        {data.map((movie,index)=>(
+        {list.map((movie,index)=>(
           <MovieCard movie={movie} key={`movies-${index}`}></MovieCard>
  
         ))}
