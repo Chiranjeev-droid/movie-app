@@ -2,9 +2,28 @@ import React from "react";
 import {data} from '../data';
 import Navbar from "./Navbar";
 import MovieCard from "./MovieCard";
+//import { render } from "@testing-library/react";
 
 
-function App() {
+class  App extends React.Component{
+  componentDidMount(){
+    //make api call
+    //dispatch action
+    const {store}=this.props;
+    store.subscribe(()=>{
+      console.log('UPDATED');  
+    //  this.forceUpdate(); //THIS METHOD IS TO FORCEFULLY UPDATE OUR COMPONENT
+    })  
+    store.dispatch({
+      type:'ADD_MOVIES',
+      movies: data
+    });
+    console.log('state',this.props.store.getState() )
+  }
+  render(){
+    console.log('render');
+    const movies = this.props.store.getState();
+
   return (
     <div className="App">
      <Navbar/>  
@@ -16,13 +35,15 @@ function App() {
       <div className="list">
         {data.map((movie,index)=>(
           <MovieCard movie={movie} key={`movies-${index}`}></MovieCard>
-
+ 
         ))}
 
       </div>
      </div>
     </div>
   );
+  }
+  
 } 
 
 export default App;

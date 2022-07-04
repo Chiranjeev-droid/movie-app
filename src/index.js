@@ -14,20 +14,18 @@ console.log('STATE before sending action',store.getState())
 
 
 //dispatch method is used to send actions.It takes action object as the argument.
-store.dispatch({
-  type: 'ADD_MOVIES',
-  movies: [{name: 'Superman'}]
-});
-console.log('STATE after sending action',store.getState())
+// store.dispatch({
+//   type: 'ADD_MOVIES',
+//   movies: [{name: 'Superman'}]
+// });
+// console.log('STATE after sending action',store.getState())
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    {/* passing store to app so that app can take movies from the store */}
+    <App store={store}/> 
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
