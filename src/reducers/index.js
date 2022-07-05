@@ -1,17 +1,33 @@
-import { ADD_MOVIES } from "../actions";
+import { ADD_MOVIES, ADD_FAVOURITE } from "../actions";
 
 const initialMovieState = {
-    list:[],
-    favourites: []
-}
-export default function movies(state=initialMovieState,action){
-    if(action.type===ADD_MOVIES){
-        return {
+  list: [],
+  favourites: [],
+};
+export default function movies(state = initialMovieState, action) {
+  // if(action.type===ADD_MOVIES){
+  //     return {
+  //         ...state,
+  //         list: action.movies
+
+  //     }
+  // }
+  // return state;
+
+  switch (action.type) {
+    case ADD_MOVIES:
+      return {
+        ...state,
+        list: action.movies
+      };
+    case ADD_FAVOURITE:
+        return{
             ...state,
-            list: action.movies
-             
+        favourites: [action.movie, ...state.favourites]
         }
-    }
-    return state;
+
+
+    default:
+      return state;
+  }
 }
- 
