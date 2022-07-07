@@ -9,6 +9,7 @@
 //action types
 export const ADD_MOVIES = "ADD_MOVIES";
 export const ADD_FAVOURITE = "ADD_FAVOURITE";
+export const REMOVE_FROM_FAVOURITES='REMOVE_FROM_FAVOURITES';
 //these type of functions are called action creators because they are ultimately returning or creating an action
 export function addMovies(movies) {
   return {
@@ -19,6 +20,12 @@ export function addMovies(movies) {
 export function addFavourite(movie) {
     return {
       type: ADD_FAVOURITE,
+      movie: movie, //movies
+    };
+  } 
+  export function removeFromFavourites(movie) {
+    return {
+      type: REMOVE_FROM_FAVOURITES,
       movie: movie, //movies
     };
   } 
