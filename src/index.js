@@ -5,7 +5,7 @@ import {createStore,applyMiddleware}  from "redux";
 import App from './components/App';
 import './index.css';
 import rootReducer from './reducers';
-
+import thunk from 'redux-thunk';
 //function logger(obj,next,action)
 //logger(obj)(next)(action)
 
@@ -20,13 +20,24 @@ import rootReducer from './reducers';
 //   }
 // }
 const logger=({dispatch,getState})=>(next)=>(action)=>{
-  console.log("ACTION_TYPE=",action.type);
+  if (typeof action !== "function") {
+    console.log("ACTION TYPE = ", action.type);
+  }
   next(action);
 
 }
-
+// const thunk =
+//   ({ dispatch, getState }) =>
+//   (next) =>
+//   (action) => {
+//     if (typeof action === "function") {
+//       action(dispatch);
+//       return;
+//     }
+//     next(action);
+//   };
 //createStore expects an argument and we will pass reducer(movies) as our argument.
-const store=createStore(rootReducer,applyMiddleware(logger));
+const store=createStore(rootReducer,applyMiddleware(logger, thunk));
 //createstore will call our movies reducer which will tell the store its initial or new state and then store will merge the new state provided by reducers.
 console.log('store',store)
 console.log('STATE before sending action',store.getState())

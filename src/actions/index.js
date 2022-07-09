@@ -36,6 +36,17 @@ export function addFavourite(movie) {
       type: SET_SHOW_FAVOURITES,
       val //passing value to reducer
     }
-   
   }
-  
+  export function handleMovieSearch(movie) {
+     //our action creators are generally synchronous and they return a particular object and my fetch request is an asynchronous call
+    //actions must be palin objects
+    const url = `http://www.omdbapi.com/?i=tt3896198&apikey=205c172a&t=${movie}`;
+    return function (dispatch) {
+      fetch(url)
+        .then((response) => response.json())
+        .then((movie) => {
+          console.log("movie", movie);
+          //dispatch an action to store the movie to the store
+        });
+    };
+  }
