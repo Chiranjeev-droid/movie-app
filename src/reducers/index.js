@@ -5,7 +5,8 @@ const initialMovieState = {
   favourites: [],
   showFavourites: false
 };
-export default function movies(state = initialMovieState, action) {
+export  function movies(state = initialMovieState, action) {
+  console.log('MOVIE REDUCER')
   // if(action.type===ADD_MOVIES){
   //     return {
   //         ...state,
@@ -47,4 +48,27 @@ export default function movies(state = initialMovieState, action) {
     default:
       return state;
   }
+}
+
+
+const initialSearchState={
+  result:{}
+
+}
+export function search(state=initialSearchState,action){
+  console.log('SEARCH REDUCER')
+  return state;
+}
+//rootReducer will be called every time action is dispatched.
+const initialRootState={
+  movies: initialMovieState,
+  search: initialSearchState
+
+}
+export default function rootReducer(state=initialRootState,action){
+  return {
+    movies: movies(state.movies,action),  //movies data can be managed by moviesReducer
+    search: search(state.search,action)
+  }
+
 }

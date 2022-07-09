@@ -4,10 +4,11 @@ import {createStore}  from "redux";
 
 import App from './components/App';
 import './index.css';
-import movies from './reducers';
+import rootReducer from './reducers';
+
 
 //createStore expects an argument and we will pass reducer(movies) as our argument.
-const store=createStore(movies);
+const store=createStore(rootReducer);
 //createstore will call our movies reducer which will tell the store its initial or new state and then store will merge the new state provided by reducers.
 console.log('store',store)
 console.log('STATE before sending action',store.getState())
